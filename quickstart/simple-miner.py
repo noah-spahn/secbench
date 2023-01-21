@@ -19,6 +19,7 @@ fileName = sys.argv[1].split('.')[0]
 #
 #
 def mine_repos(user, repos):
+    print("mining the repo: {}/{}".format(user,repos))
     # path for the new file
     path = 'vulFound/' + fileName + '/' + user + '_' + repos + '.csv'
 
@@ -31,21 +32,24 @@ def mine_repos(user, repos):
         a = csv.writer(vf, delimiter=',')
 
         # get commits for each repository
-        commits = g.get_user(user).get_repo(repos).get_commits(since=datetime(2000, 1, 1, 0, 0), until=datetime.now())
+        commits = g.get_user(user).get_repo(repos).get_commits(since=datetime(2020, 1, 1, 0, 0), until=datetime.now())
 
         print("Got commits for ",user,repos)
 
         # for each commit
         for c in commits:
+            print(".", end="")
 
             # check if the regular expression secureReg matches with the commit message
             check = secureReg.search(c.commit.message)
 
             # if check true
             if check:
+                print("*")
 
                 # write for the file the commit url and commit message
                 a.writerow([c.commit.url, c.commit.message])
+        print("done")
 
 try:
 
