@@ -32,7 +32,7 @@ def mine_repos(user, repos):
         a = csv.writer(vf, delimiter=',')
 
         # get commits for each repository
-        commits = g.get_user(user).get_repo(repos).get_commits(since=datetime(2020, 1, 1, 0, 0), until=datetime.now())
+        commits = g.get_user(user).get_repo(repos).get_commits(since=datetime(2022, 1, 1, 0, 0), until=datetime.now())
 
         print("Got commits for ",user,repos)
 
