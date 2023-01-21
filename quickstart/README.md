@@ -8,4 +8,4 @@ We recommend working in a virtual environment with the requirements installed.
 
 The script can be invoked with one command line argument:
 
-`python simple-miner.py demo.csv`
+`python find-vulnerable-commits.py repos.csv`
